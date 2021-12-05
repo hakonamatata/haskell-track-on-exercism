@@ -1,4 +1,9 @@
 module Pangram (isPangram) where
 
+import Data.Char (toLower)
+
 isPangram :: String -> Bool
-isPangram text = error "You need to implement this function."
+isPangram text = length [x | x <- ['a' .. 'z'], x `elem` toLowerCase text] == 26
+
+toLowerCase :: String -> String
+toLowerCase = map toLower
