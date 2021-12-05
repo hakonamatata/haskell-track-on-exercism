@@ -23,3 +23,6 @@ cabal.project.local~
 .ghc.environment.*
 *.cabal
 */stack.yaml.lock
+
+# personal references to my user
+*metadata.json

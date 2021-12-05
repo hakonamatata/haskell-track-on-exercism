@@ -1,0 +1,21 @@
+name: qsort
+version: 1
+
+dependencies:
+  - base
+
+library:
+  exposed-modules: QSort
+  source-dirs: src
+  ghc-options: -Wall
+  # dependencies:
+  # - foo       # List here the packages you
+  # - bar       # want to use in your solution.
+
+tests:
+  test:
+    main: Tests.hs
+    source-dirs: test
+    dependencies:
+      - qsort
+      - hspec
