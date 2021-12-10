@@ -1,7 +1,10 @@
 module LuciansLusciousLasagna (elapsedTimeInMinutes, expectedMinutesInOven, preparationTimeInMinutes) where
 
--- TODO: define the expectedMinutesInOven constant
+elapsedTimeInMinutes :: Int -> Int -> Int
+elapsedTimeInMinutes layers minInOven = preparationTimeInMinutes layers + minInOven
 
--- TODO: define the preparationTimeInMinutes function
+expectedMinutesInOven :: Int
+expectedMinutesInOven = 40
 
--- TODO: define the elapsedTimeInMinutes function
+preparationTimeInMinutes :: Int -> Int
+preparationTimeInMinutes layers = layers * 2
