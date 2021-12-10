@@ -1,18 +1,23 @@
 module Bob (responseFor) where
 
-import Data.Char (isAlpha, isUpper)
+import Data.Char (isAlpha, isDigit, isUpper)
 
 responseFor :: String -> String
 responseFor xs
-  | xs == "Bob" = "Fine. Be that way!"
-  | isQuestion xs && isYelling xs = "Calm down, I know what I'm doing!"
-  | isYelling xs = "Whoa, chill out!"
+  | xs == "Bob" || filterOutTheRelevantBits xs == "" = "Fine. Be that way!"
+  | isQuestion xs && isYelling (filterOutEverythingExceptLetters xs) = "Calm down, I know what I'm doing!"
+  | isYelling (filterOutEverythingExceptLetters xs) = "Whoa, chill out!"
   | isQuestion xs = "Sure."
   | otherwise = "Whatever."
 
 isQuestion :: String -> Bool
-isQuestion xs = last xs == '?'
+isQuestion xs = last (filterOutTheRelevantBits xs) == '?'
 
--- BUG: isUpper returns false when checks agains ! or ?
 isYelling :: String -> Bool
-isYelling xs = all isUpper xs
+isYelling xs = all isUpper xs && filterOutEverythingExceptLetters xs /= ""
+
+filterOutTheRelevantBits :: String -> String
+filterOutTheRelevantBits = filter (\x -> isAlpha x || isDigit x || x == '!' || x == '?')
+
+filterOutEverythingExceptLetters :: String -> String
+filterOutEverythingExceptLetters = filter isAlpha
